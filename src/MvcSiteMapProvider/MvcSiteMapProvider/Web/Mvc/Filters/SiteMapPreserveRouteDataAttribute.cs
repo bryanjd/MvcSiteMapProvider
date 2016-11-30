@@ -34,7 +34,7 @@ namespace MvcSiteMapProvider.Web.Mvc.Filters
         {
             ISiteMapNode node = null;
             var siteMap = SiteMaps.Current;
-            if (Target == AttributeTarget.CurrentNode)
+            if (Target != AttributeTarget.ParentNode && Target != AttributeTarget.GrandparentNode)
             {
                 node = siteMap.CurrentNode;
             }
@@ -45,10 +45,6 @@ namespace MvcSiteMapProvider.Web.Mvc.Filters
             else if (Target == AttributeTarget.GrandparentNode)
             {
                 node = siteMap.CurrentNode.ParentNode.ParentNode;
-            }
-            else
-            {
-                node = siteMap.CurrentNode;
             }
 
             if (node != null)
