@@ -34,13 +34,21 @@ namespace MvcSiteMapProvider.Web.Mvc.Filters
         {
             ISiteMapNode node = null;
             var siteMap = SiteMaps.Current;
-            if (Target != AttributeTarget.ParentNode)
+            if (Target == AttributeTarget.CurrentNode)
             {
                 node = siteMap.CurrentNode;
             }
-            else
+            else if (Target == AttributeTarget.ParentNode)
             {
                 node = siteMap.CurrentNode.ParentNode;
+            }
+            else if (Target == AttributeTarget.GrandparentNode)
+            {
+                node = siteMap.CurrentNode.ParentNode.ParentNode;
+            }
+            else
+            {
+                node = siteMap.CurrentNode;
             }
 
             if (node != null)

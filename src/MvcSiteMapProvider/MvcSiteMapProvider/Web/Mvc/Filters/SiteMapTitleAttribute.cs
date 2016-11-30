@@ -62,6 +62,10 @@ namespace MvcSiteMapProvider.Web.Mvc.Filters
                         {
                             siteMap.CurrentNode.ParentNode.Title = target.ToString();
                         }
+                        else if (Target == AttributeTarget.GrandparentNode && siteMap.CurrentNode.ParentNode.ParentNode != null)
+                        {
+                            siteMap.CurrentNode.ParentNode.ParentNode.Title = target.ToString();
+                        }
                         else
                         {
                             siteMap.CurrentNode.Title = target.ToString();
